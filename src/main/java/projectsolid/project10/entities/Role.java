@@ -22,10 +22,6 @@ public class Role implements GrantedAuthority, Serializable {
     @Column(nullable = false, unique = true)
     private RoleName roleName;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "roles")
-    private List<UserModel> users;
-
 
     @Override
     public String getAuthority() {

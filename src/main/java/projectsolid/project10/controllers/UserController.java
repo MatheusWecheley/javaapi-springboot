@@ -19,7 +19,6 @@ public class UserController {
     @Autowired
     private UserServices userServices;
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserModel> findById(@PathVariable Long id) {
         UserModel usr = userServices.findById(id);
