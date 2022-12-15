@@ -1,5 +1,7 @@
 package projectsolid.project10.entities;
 
+import net.bytebuddy.implementation.bind.annotation.Default;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -15,7 +17,9 @@ public class Barber implements Serializable {
     private String address;
     private String cellphone;
 
-    private LocalDateTime registrationDate;
+    @Column(name = "created_date", insertable = false, updatable = false,
+            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private LocalDateTime createdDate;
 
     public long getId() {
         return id;
@@ -50,11 +54,11 @@ public class Barber implements Serializable {
     }
 
 
-    public LocalDateTime getRegistrationDate() {
-        return registrationDate;
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setRegistrationDate(LocalDateTime registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setRegistrationDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 }

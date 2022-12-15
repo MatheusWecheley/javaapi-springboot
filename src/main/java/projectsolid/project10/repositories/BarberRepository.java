@@ -10,6 +10,6 @@ import projectsolid.project10.entities.UserModel;
 import java.time.LocalDateTime;
 
 public interface BarberRepository extends PagingAndSortingRepository<Barber, Long> {
-    Page<Barber> findAllByRegistrationDateIsAfterOrderByRegistrationDate(LocalDateTime date, Pageable pageable);
-    Page<Barber> findAllByRegistrationDateIsBeforeOrderByRegistrationDate(LocalDateTime date, Pageable pageable);
+    Page<Barber> findAllByCreatedDateIsAfterOrderByCreatedDate(LocalDateTime date, Pageable pageable);
+    Page<Barber> findAllByCreatedDateIsBeforeOrderByCreatedDate(LocalDateTime date, Pageable pageable);
 }

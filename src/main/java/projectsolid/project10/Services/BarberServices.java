@@ -28,9 +28,9 @@ public class BarberServices {
 
     public Page<Barber> findAll(Pageable pageable, String flag) {
         if (flag != null && flag.equals("next")) {
-            return barberRepository.findAllByRegistrationDateIsAfterOrderByRegistrationDate(LocalDateTime.now(), pageable);
+            return barberRepository.findAllByCreatedDateIsAfterOrderByCreatedDate(LocalDateTime.now(), pageable);
         } else if (flag != null && flag.equals("previous")) {
-            return barberRepository.findAllByRegistrationDateIsBeforeOrderByRegistrationDate(LocalDateTime.now(), pageable);
+            return barberRepository.findAllByCreatedDateIsBeforeOrderByCreatedDate(LocalDateTime.now(), pageable);
         } else {
             return barberRepository.findAll(pageable);
         }
