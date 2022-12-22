@@ -25,7 +25,6 @@ public class UserController {
         return ResponseEntity.ok().body(usr);
     }
 
-
     @PostMapping
     public ResponseEntity<UserModel> create(@RequestBody UserModel obj) {
         obj = userServices.create(obj);

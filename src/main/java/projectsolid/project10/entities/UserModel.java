@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +28,11 @@ public class UserModel implements UserDetails, Serializable {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany
+    @Column(name = "created_date", insertable = false, updatable = false,
+            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private LocalDateTime createdDate;
+
+    @ManyToMany(cascade=CascadeType.PERSIST)
     @JoinTable(name = "tb_users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
@@ -89,6 +94,14 @@ public class UserModel implements UserDetails, Serializable {
     }
 
     public void setUsername(String username) {this.username = username; }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
 
     public List<Role> getRoles() {
         return roles;
